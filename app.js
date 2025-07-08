@@ -118,7 +118,9 @@ app.get("/demouser",async (req,res)=>{
     res.send(registerUser);
 })
 
-
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter); //const router = expresss.Router({mergeParams:true});--> this line we have use that is mergeParams : true so that "id" gets passed to the child router
 app.use("/",userRouter);
