@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Page Not Found | WanderLust</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #232526, #414345);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 8rem;
+      margin: 0;
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff6a00; }
+      to { text-shadow: 0 0 20px #ee0979; }
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    a.home-btn {
+      margin-top: 2rem;
+      padding: 12px 24px;
+      background: #ff6a00;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    a.home-btn:hover {
+      transform: scale(1.1);
+      background: #ee0979;
+    }
+
+    .planet {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffcc70, #ff6a00);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotate 20s linear infinite;
+      box-shadow: 0 0 40px rgba(255, 106, 0, 0.6);
+      z-index: 3;
+    }
+
+    @keyframes rotate {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .shadow {
+      position: absolute;
+      bottom: 20px;
+      width: 180px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      filter: blur(8px);
+      animation: pulse 2s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes pulse {
+      from { transform: scaleX(1); }
+      to { transform: scaleX(1.1); }
+    }
+
+    .stars, .planets {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .star, .mini-planet {
+      position: absolute;
+      border-radius: 50%;
+      animation: orbit 30s linear infinite;
+    }
+
+    .star {
+      width: 2px;
+      height: 2px;
+      background: white;
+      box-shadow: 0 0 4px #fff;
+    }
+
+    .mini-planet {
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle at 30% 30%, #eee, #888);
+      animation: orbit 40s linear infinite;
+    }
+
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 5rem; }
+      p { font-size: 1.2rem; }
+      .planet { width: 100px; height: 100px; }
+      .shadow { width: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="planets"></div>
+  <div class="planet"></div>
+  <div class="shadow"></div>
+
+  <div class="container">
+    <h1>404</h1>
+    <p>Oops! The Page you're looking for is lost in space 🚀</p>
+    <a class="home-btn" href="/listings">Return to Home</a>
+    <p style="margin-top: 2rem; font-size: 0.9rem;">Designed & Managed by Itian Sarad Agarwal</p>
+  </div>
+
+  <script>
+    const starsContainer = document.querySelector('.stars');
+    const planetsContainer = document.querySelector('.planets');
+
+    // Create 100 stars
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDuration = (20 + Math.random() * 30) + 's';
+      starsContainer.appendChild(star);
+    }
+
+    // Create 5 orbiting mini-planets
+    for (let i = 0; i < 5; i++) {
+      const miniPlanet = document.createElement('div');
+      miniPlanet.classList.add('mini-planet');
+      miniPlanet.style.top = Math.random() * 100 + '%';
+      miniPlanet.style.left = Math.random() * 100 + '%';
+      miniPlanet.style.animationDuration = (30 + Math.random() * 20) + 's';
+      planetsContainer.appendChild(miniPlanet);
+    }
+  </script>
+</body>
+</html>
