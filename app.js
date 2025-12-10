@@ -136,13 +136,30 @@ app.use("/",userRouter);
 //   next(new ExpressError(404, "Page not found"));
 // });
 
-app.use((req, res) => { 
-    res.render("listings/pageNotFound.ejs"); 
-})
 
+// 404 handler — should come first
+app.use((req, res, next) => { 
+    res.status(404).render("listings/pageNotFound.ejs"); 
+});
+
+// Error handler — always last
 app.use((err, req, res, next) => {
-    let {statusCode=500,message="Something went wrong"} = err;
-    res.status(statusCode).render("error.ejs",{message});
-    // res.status(statusCode).send(message);
-})
+    if (res.headersSent) {
+        return next(err); // delegate to default Express handler if headers already sent
+    }
+    const { statusCode = 500, message = "Something went wrong" } = err;
+    res.status(statusCode).render("error.ejs", { message });
+});
+
+
+
+// app.use((req, res) => { 
+//     res.status(404).render("listings/pageNotFound.ejs"); 
+// })
+
+// app.use((err, req, res, next) => {
+//     let {statusCode=500,message="Something went wrong"} = err;
+//     res.status(statusCode).render("error.ejs",{message});
+//     // res.status(statusCode).send(message);
+// })
 
